@@ -89,7 +89,7 @@ exports.createPages = ({ graphql, actions }) => {
               return
             }
           }
-          checkstyles(node)
+          //checkstyles(node)
           createPage({
             path: get(node, 'fields.path'),
             component: DocumentationTemplate,
@@ -173,6 +173,12 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
             name: `exclude`,
             value: !isDev,
           })
+        } else {
+          createNodeField({
+            node,
+            name: `exclude`,
+            value: false,
+          })
         }
       } else {
         // Template
@@ -185,6 +191,11 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
           node,
           name: `version`,
           value: version,
+        })
+        createNodeField({
+          node,
+          name: `exclude`,
+          value: false,
         })
       }
     }

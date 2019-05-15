@@ -12,9 +12,7 @@ const siteMetadata = {
   keywords: [`spring`, `cloud`, `dataflow`],
 }
 
-const arrVars = Object.entries(versions).map(v => {
-  const name = v[0]
-  const version = v[1]
+const arrVars = Object.entries(versions).map(([name, version]) => {
   const vars = Object.assign({}, require(`./data/${version}/variables.json`))
   if (name === 'current') {
     vars.currentPath = `/docs`
